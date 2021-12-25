@@ -1,25 +1,71 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {Board} from "./components/Board";
+import {Player} from "./domain/models/player";
+import {TeamSelector} from "./components/TeamSelector";
+import {PokemonService} from "./domain/services/Pokemon.service";
+import {Pokemon} from "./domain/models/pokemon";
+import {Team} from "./domain/models/team";
 
 function App() {
+  const [pokemonOptions, setPokemonOptions] = React.useState<Pokemon[]>([])
+  const [teamPurple, setTeamPurple] = React.useState<Team>({color: "purple", players: {}})
+  const [teamYellow, setTeamYellow] = React.useState<Team>({color: "yellow", players: {}})
+  const [jungle, setJungle] = React.useState([])
+
+  const handlePurplePlayerChange = (playerId:string, changedPlayer: Player) => {
+    setTeamPurple({
+      ...teamPurple,
+      players: {
+        ...teamPurple.players,
+        [playerId]: changedPlayer
+      }
+    })
+  }
+
+  const handleYellowPlayerChange = (playerId:string, changedPlayer: Player) => {
+    setTeamYellow({
+      ...teamYellow,
+      players: {
+        ...teamYellow.players,
+        [playerId]: changedPlayer
+      }
+    })
+  }
+
+  React.useEffect(() => {
+    new PokemonService().getPlayable().then(setPokemonOptions)
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <section className="App">
+      <header>
+        <h1>Pokémon Unite - Board</h1>
       </header>
-    </div>
+
+      <section className="Main">
+        <TeamSelector
+          title="Team Yellow"
+          color={teamYellow.color}
+          pokemonOptions={pokemonOptions}
+          onPlayerChange={handleYellowPlayerChange}/>
+        <Board
+          teamPurple={teamPurple}
+          teamYellow={teamYellow}
+          jungle={jungle}
+          onPurplePlayerChange={handlePurplePlayerChange}
+          onYellowPlayerChange={handleYellowPlayerChange}
+          />
+        <TeamSelector
+          title="Team Purple"
+          color={teamPurple.color}
+          pokemonOptions={pokemonOptions}
+          onPlayerChange={handlePurplePlayerChange}/>
+      </section>
+      <footer>
+        Created 2021
+      </footer>
+    </section>
   );
 }
 
