@@ -11,7 +11,7 @@ function App() {
   const [pokemonOptions, setPokemonOptions] = React.useState<Pokemon[]>([])
   const [teamPurple, setTeamPurple] = React.useState<Team>({color: "purple", players: {}})
   const [teamYellow, setTeamYellow] = React.useState<Team>({color: "yellow", players: {}})
-  const [jungle, setJungle] = React.useState([])
+  const [jungle] = React.useState([])
 
   const handlePurplePlayerChange = (playerId:string, changedPlayer: Player) => {
     setTeamPurple({
