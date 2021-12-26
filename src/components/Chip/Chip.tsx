@@ -5,8 +5,6 @@ import React from "react";
 export interface ChipProps {
   color: "yellow" | "purple" | "gray"
   pokemon: Pokemon
-  positionX: number
-  positionY: number
 }
 
 const mapOfColors: Record<"yellow" | "purple" | "gray", string> = {
@@ -17,8 +15,6 @@ const mapOfColors: Record<"yellow" | "purple" | "gray", string> = {
 
 export const Chip: React.FC<ChipProps> = ({
                                             pokemon,
-                                            positionX,
-                                            positionY,
                                             color,
                                           }) => {
 
@@ -26,7 +22,6 @@ export const Chip: React.FC<ChipProps> = ({
   return <div className="Chip"
               style={{
                 borderColor: mapOfColors[color] || mapOfColors.gray,
-                transform: `translateX(${positionX}px) translateY(${positionY}px)`,
                 backgroundImage: `url(${process.env.PUBLIC_URL}/roster/${pokemon.imageUrl})`
               }} />
 }

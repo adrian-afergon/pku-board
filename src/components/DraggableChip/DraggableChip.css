@@ -1,3 +1,4 @@
-.DragableChip {
-
+.DraggableChip {
+    position: absolute;
+    cursor: pointer;
 }

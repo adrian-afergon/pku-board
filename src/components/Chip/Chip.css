@@ -1,11 +1,9 @@
 .Chip {
     width: 75px;
     height: 75px;
-    position: absolute;
     border-radius: 100%;
     border: 5px solid black;
-    cursor: pointer;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 75px
+    background-size: 75px;
 }
