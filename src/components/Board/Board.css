@@ -1,6 +1,7 @@
 .Board {
+    border-radius: 1rem;
     position: relative;
-    background-image: url('stadium.jpg');
     width: 1024px;
     height: 768px;
+    border: 1px solid #E1E1E1;
 }
