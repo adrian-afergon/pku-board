@@ -1,11 +1,7 @@
 import React from "react";
 import {Pokemon} from "../../domain/models/pokemon";
 import {Player} from "../../domain/models/player";
-
-interface Position {
-  x: number,
-  y: number
-}
+import {Position} from "../../domain/models/position";
 
 interface PlayerRowProps {
   rolesOptions: { top: Position, jungle: Position, bottom: Position, invade: Position },
