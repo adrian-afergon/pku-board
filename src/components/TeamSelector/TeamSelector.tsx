@@ -3,6 +3,7 @@ import {PlayerRow} from "../PlayerRow";
 import React from "react";
 import './TeamSelector.css'
 import {Pokemon} from "../../domain/models/pokemon";
+import {useColor} from "../../hooks/useColor";
 
 interface TeamSelectorProps {
   title: string
@@ -58,7 +59,11 @@ export const TeamSelector: React.FC<TeamSelectorProps> = ({
 
   const rolesOptions = color === "yellow" ? yellowPositionsRoles : purplePositionsRoles
 
-  return <form className="TeamSelector">
+  const teamColor = useColor(color)
+
+  return <form className="TeamSelector" style={{
+    borderColor: teamColor
+  }}>
     <h3>{title}</h3>
     <ul>
       <PlayerRow rolesOptions={rolesOptions} pokemonOptions={pokemonOptions} onChange={(player) => {onPlayerChange('player1', player)}}/>

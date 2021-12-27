@@ -1,7 +1,14 @@
 .TeamSelector {
+    text-align: center;
+    border: 3px solid #E1E1E1;
+    border-radius: 1rem;
 }
 
 .TeamSelector ul {
     list-style: none;
-    padding: 1rem
+    padding: 1rem;
+}
+
+.TeamSelector ul li {
+    margin: .5rem 0;
 }

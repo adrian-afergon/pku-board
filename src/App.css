@@ -1,4 +1,10 @@
+
+header {
+    text-align: center;
+}
 .Main {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    gap: 4rem;
 }
