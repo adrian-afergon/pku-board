@@ -6,6 +6,7 @@ import {TeamSelector} from "./components/TeamSelector";
 import {PokemonService} from "./domain/services/Pokemon.service";
 import {Pokemon} from "./domain/models/pokemon";
 import {Team} from "./domain/models/team";
+import {Timer} from "./components/Timer";
 
 function App() {
   const [pokemonOptions, setPokemonOptions] = React.useState<Pokemon[]>([])
@@ -43,6 +44,7 @@ function App() {
         <h1>Pokémon Unite - Board</h1>
       </header>
 
+      <section><Timer /></section>
       <section className="Main">
         <TeamSelector
           title="Team Yellow"
