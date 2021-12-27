@@ -1,25 +1,35 @@
 import React from "react";
 import './Timer.css'
-import {Clock} from "../Clock";
 
-export const Timer: React.FC = () => {
+interface TimerProps {
+  time: number
+  maxTime?: number
+  minTime?: number
+  onChange?: (time: number) => void
+}
 
-  const [time, setTime] = React.useState<number>(0)
+export const Timer: React.FC<TimerProps> = ({
+  time,
+  maxTime = 600,
+  minTime = 0,
+  onChange
+}) => {
 
   const handleChange = (event: any) => {
-    setTime(event.target.value)
+    const newTime = Number(event.target.value)
+
+    onChange
+    && newTime >= minTime && newTime <= maxTime
+    && onChange(Number(event.target.value))
   };
 
-  return <>
-    <input
-      type="range"
-      min="0"
-      max="600"
-      step="1"
-      className="Timer"
-      value={time}
-      onChange={handleChange}
-    />
-    <Clock time={time} />
-  </>
+  return <input
+    type="range"
+    min={minTime}
+    max={maxTime}
+    step="1"
+    className="Timer"
+    value={time}
+    onChange={handleChange}
+  />
 }
