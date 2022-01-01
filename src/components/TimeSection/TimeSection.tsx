@@ -17,7 +17,7 @@ export const TimeSection: React.FC<TimerSelectorProps> = ({
     setTime(time)
   }
 
-  return <section className="TimeSection">
+  return <section className="TimeSection" title="Time section">
     <Timer time={time} onChange={handleTimeChange} maxTime={maxTime}/>
     <Clock time={time} onChange={handleTimeChange} maxTime={maxTime}/>
   </section>
