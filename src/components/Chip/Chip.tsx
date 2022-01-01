@@ -1,21 +1,24 @@
-import {Pokemon} from "../../domain/models/pokemon";
 import './Chip.css'
 import React from "react";
 import {useColor} from "../../hooks/useColor";
 
 export interface ChipProps {
-  color: "yellow" | "purple" | "gray"
-  pokemon: Pokemon
+  label: string
+  color?: "yellow" | "purple" | "gray"
+  image?: string
 }
+
 export const Chip: React.FC<ChipProps> = ({
-                                            pokemon,
-                                            color,
+                                            label,
+                                            image,
+                                            color = "gray",
                                           }) => {
   const teamColor = useColor(color)
 
   return <div className="Chip"
+              aria-label={label}
               style={{
                 borderColor: teamColor,
-                backgroundImage: `url(${process.env.PUBLIC_URL}/roster/${pokemon.imageUrl})`
-              }} />
+                backgroundImage: image ? `url(${process.env.PUBLIC_URL}/roster/${image})` : ''
+              }}/>
 }

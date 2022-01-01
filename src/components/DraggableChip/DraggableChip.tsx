@@ -1,22 +1,24 @@
 import {Chip} from "../Chip";
-import {ChipProps} from "../Chip/Chip";
 import React from "react";
 import {Player} from "../../domain/models/player";
 import './DraggableChip.css'
+import {Pokemon} from "../../domain/models/pokemon";
 
-interface DraggableChipProps extends ChipProps {
+interface DraggableChipProps {
+  color: "yellow" | "purple" | "gray"
+  pokemon: Pokemon
   positionX: number,
   positionY: number,
   onPositionChange: (player: Player) => void
 }
 
 export const DraggableChip: React.FC<DraggableChipProps> = ({
-                                                            pokemon,
-                                                            positionX,
-                                                            positionY,
-                                                            color,
-                                                            onPositionChange
-}) => {
+                                                              pokemon,
+                                                              positionX,
+                                                              positionY,
+                                                              color,
+                                                              onPositionChange
+                                                            }) => {
 
   const [isDragging, setIsDragging] = React.useState(false);
 
@@ -52,7 +54,8 @@ export const DraggableChip: React.FC<DraggableChipProps> = ({
       transform: `translateX(${positionX}px) translateY(${positionY}px)`,
     }}
   ><Chip
-    pokemon={pokemon}
+    label={pokemon.name}
+    image={pokemon.imageUrl}
     color={color}
   /></div>
 
