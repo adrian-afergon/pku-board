@@ -66,11 +66,21 @@ export const TeamSelector: React.FC<TeamSelectorProps> = ({
   }}>
     <h3>{title}</h3>
     <ul>
-      <PlayerRow rolesOptions={rolesOptions} pokemonOptions={pokemonOptions} onChange={(player) => {onPlayerChange('player1', player)}}/>
-      <PlayerRow rolesOptions={rolesOptions} pokemonOptions={pokemonOptions} onChange={(player) => {onPlayerChange('player2', player)}}/>
-      <PlayerRow rolesOptions={rolesOptions} pokemonOptions={pokemonOptions} onChange={(player) => {onPlayerChange('player3', player)}}/>
-      <PlayerRow rolesOptions={rolesOptions} pokemonOptions={pokemonOptions} onChange={(player) => {onPlayerChange('player4', player)}}/>
-      <PlayerRow rolesOptions={rolesOptions} pokemonOptions={pokemonOptions} onChange={(player) => {onPlayerChange('player5', player)}}/>
+      {[
+        'player1',
+        'player2',
+        'player3',
+        'player4',
+        'player5'
+      ].map(playerName =>
+        <PlayerRow
+          key={playerName}
+          label={playerName}
+          rolesOptions={rolesOptions}
+          pokemonOptions={pokemonOptions}
+          onChange={(player) => {onPlayerChange(playerName, player)}}
+        />
+      )}
     </ul>
   </form>
 

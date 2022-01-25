@@ -11,14 +11,13 @@ export default {
       name: "color",
       description: "border color for the Chip component",
     },
-    pokemon: {
-      name: "pokemon",
-      description: "Pokémon for being displayed inside the Chip",
-      defaultValue: {
-        imageUrl: "",
-        name: "",
-        id: 0
-      }
+    label: {
+      name: "label",
+      description: "label for the given Chip. This value is used at DOM level."
+    },
+    image: {
+      name: "image",
+      description: "Image file name for the given Chip. This value is used as background image "
     }
   },
 } as ComponentMeta<typeof Chip>;
