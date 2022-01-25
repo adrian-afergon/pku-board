@@ -5,3 +5,21 @@
     height: 768px;
     border: 1px solid #E1E1E1;
 }
+
+.PlayerColorSelector {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 100%;
+    border: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 3rem;
+    cursor: pointer;
+}
+
+.BoardToolbar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}

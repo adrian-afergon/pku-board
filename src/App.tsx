@@ -17,6 +17,26 @@ function App() {
   const [teamYellow, setTeamYellow] = React.useState<Team>({color: "yellow", players: {}})
   const [jungle] = React.useState([])
 
+  const handlePurplePlayerDelete = (playerId: string) => {
+    setTeamPurple({
+      ...teamPurple,
+      players: {
+        ...teamPurple.players,
+        [playerId]: undefined
+      }
+    })
+  }
+
+  const handleYellowPlayerDelete = (playerId: string) => {
+    setTeamYellow({
+      ...teamYellow,
+      players: {
+        ...teamYellow.players,
+        [playerId]: undefined
+      }
+    })
+  }
+
   const handlePurplePlayerChange = (playerId: string, changedPlayer: Player) => {
     setTeamPurple({
       ...teamPurple,
@@ -46,6 +66,7 @@ function App() {
                selectedGameMap
              ]) => {
       setPokemonOptions(pokemons)
+
       setGameMap(selectedGameMap)
     })
   }, [])
@@ -64,20 +85,27 @@ function App() {
                       title="Team Yellow"
                       color={teamYellow.color}
                       pokemonOptions={pokemonOptions}
-                      onPlayerChange={handleYellowPlayerChange}/>
-                  <Board
-                      image={gameMap.image}
-                      teamPurple={teamPurple}
-                      teamYellow={teamYellow}
-                      jungle={jungle}
-                      onPurplePlayerChange={handlePurplePlayerChange}
-                      onYellowPlayerChange={handleYellowPlayerChange}
-                  />
+                      onPlayerChange={handleYellowPlayerChange}
+                      onPlayerDelete={handleYellowPlayerDelete}  
+                    />
+                  <section>
+                      <Board
+                          image={gameMap.image}
+                          teamPurple={teamPurple}
+                          teamYellow={teamYellow}
+                          jungle={jungle}
+                          onPurplePlayerChange={handlePurplePlayerChange}
+                          onYellowPlayerChange={handleYellowPlayerChange}
+                      />
+                  </section>
+
                   <TeamSelector
                       title="Team Purple"
                       color={teamPurple.color}
                       pokemonOptions={pokemonOptions}
-                      onPlayerChange={handlePurplePlayerChange}/>
+                      onPlayerChange={handlePurplePlayerChange}
+                      onPlayerDelete={handlePurplePlayerDelete}  
+                    />
               </section>
           </>}
       <footer>

@@ -25,7 +25,13 @@ describe('PlayerRow', () => {
 
     const label = 'irrelevant'
 
-    render(<PlayerRow label={label} rolesOptions={rolesOptions} pokemonOptions={[]} onChange={jest.fn} />)
+    render(<PlayerRow
+      label={label}
+      rolesOptions={rolesOptions}
+      pokemonOptions={[]}
+      onChange={jest.fn}
+      onDelete={jest.fn}  
+    />)
 
     screen.getByLabelText(`${label} pokemon`)
     screen.getByLabelText(`${label} role`)

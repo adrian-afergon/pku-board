@@ -10,6 +10,7 @@ interface TeamSelectorProps {
   color: "yellow" | "purple"
   pokemonOptions: Pokemon[]
   onPlayerChange: (playerId: string, player: Player) => void
+  onPlayerDelete: (playerId: string) => void
 }
 
 const yellowPositionsRoles = {
@@ -54,7 +55,8 @@ export const TeamSelector: React.FC<TeamSelectorProps> = ({
   title,
   color,
   pokemonOptions,
-  onPlayerChange
+  onPlayerChange,
+  onPlayerDelete
 }) => {
 
   const rolesOptions = color === "yellow" ? yellowPositionsRoles : purplePositionsRoles
@@ -79,6 +81,7 @@ export const TeamSelector: React.FC<TeamSelectorProps> = ({
           rolesOptions={rolesOptions}
           pokemonOptions={pokemonOptions}
           onChange={(player) => {onPlayerChange(playerName, player)}}
+          onDelete={() => {onPlayerDelete(playerName)}}
         />
       )}
     </ul>

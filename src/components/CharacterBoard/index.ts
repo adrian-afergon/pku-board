@@ -1,0 +1,1 @@
+export {CharacterBoard} from './CharacterBoard'
