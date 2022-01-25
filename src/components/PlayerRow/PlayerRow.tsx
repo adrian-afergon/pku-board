@@ -1,22 +1,25 @@
 import React from "react";
-import {Pokemon} from "../../domain/models/pokemon";
-import {Player} from "../../domain/models/player";
-import {Position} from "../../domain/models/position";
+import { Pokemon } from "../../domain/models/pokemon";
+import { Player } from "../../domain/models/player";
+import { Position } from "../../domain/models/position";
 
 interface PlayerRowProps {
   label?: string
   rolesOptions: { top: Position, jungle: Position, bottom: Position, invade: Position },
   pokemonOptions: Pokemon[],
   onChange: (player: Player) => void
+  onDelete: () => void
 }
 
 export const PlayerRow: React.FC<PlayerRowProps> = ({
   label,
-                                                      rolesOptions,
-                                                      pokemonOptions,
-                                                      onChange
-                                                    }) => {
+  rolesOptions,
+  pokemonOptions,
+  onChange,
+  onDelete
+}) => {
 
+  const [color, setColor] = React.useState<string>('grey')
   const [pokemon, setPokemon] = React.useState<Pokemon | undefined>()
   const [role, setRole] = React.useState<string | undefined>()
 
@@ -25,6 +28,7 @@ export const PlayerRow: React.FC<PlayerRowProps> = ({
     setPokemon(selectedPokemon)
     if (role && selectedPokemon && selectedPokemon !== pokemon) {
       onChange({
+        color: color,
         pokemon: selectedPokemon,
         // @ts-ignore
         position: rolesOptions[role]
@@ -38,13 +42,29 @@ export const PlayerRow: React.FC<PlayerRowProps> = ({
     setRole(event.target.value)
     if (pokemon && selectedPosition && selectedPosition !== role) {
       onChange({
+        color,
         pokemon,
         position: selectedPosition
       })
     }
   }
 
+  const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // @ts-ignore
+    const selectedColor = event.target.value
+    setColor(event.target.value)
+    if (pokemon && role && selectedColor !== color) {
+      onChange({
+        color: selectedColor,
+        pokemon,
+        // @ts-ignore
+        position: rolesOptions[role]
+      })
+    }
+  }
   return <li aria-label={label}>
+    {/* <button onClick={onDelete}>Delete</button> */}
+    <input aria-label={`${label} color`} type="color" onChange={handleColorChange}/>
     <select aria-label={`${label} pokemon`} onChange={handlePokemonChange}>
       <option value="">Pokémon</option>
       {pokemonOptions.map(pokemon => <option value={pokemon.id} key={`option-${pokemon.id}`}>

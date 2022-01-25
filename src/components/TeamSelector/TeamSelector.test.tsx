@@ -8,7 +8,9 @@ describe('TeamSelector', () => {
       title="Team"
       color="purple"
       pokemonOptions={[]}
-      onPlayerChange={jest.fn} />
+      onPlayerChange={jest.fn} 
+      onPlayerDelete={jest.fn}
+      />
     )
     screen.getByText("Team")
   });

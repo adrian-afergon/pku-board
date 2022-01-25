@@ -6,6 +6,7 @@ import {Pokemon} from "../../domain/models/pokemon";
 
 interface DraggableChipProps {
   color: "yellow" | "purple" | "gray"
+  backgroundColor: string,
   pokemon: Pokemon
   positionX: number,
   positionY: number,
@@ -13,12 +14,13 @@ interface DraggableChipProps {
 }
 
 export const DraggableChip: React.FC<DraggableChipProps> = ({
-                                                              pokemon,
-                                                              positionX,
-                                                              positionY,
-                                                              color,
-                                                              onPositionChange
-                                                            }) => {
+  pokemon,
+  positionX,
+  positionY,
+  color,
+  backgroundColor,
+  onPositionChange
+}) => {
 
   const [isDragging, setIsDragging] = React.useState(false);
 
@@ -32,6 +34,7 @@ export const DraggableChip: React.FC<DraggableChipProps> = ({
 
   const handlePointerMove = (event: any) => {
     if (isDragging) onPositionChange({
+      color: backgroundColor,
       pokemon,
       position: {
         x: positionX + event.movementX,
@@ -56,6 +59,7 @@ export const DraggableChip: React.FC<DraggableChipProps> = ({
   ><Chip
     label={pokemon.name}
     image={pokemon.imageUrl}
+    backgroundColor={backgroundColor}
     color={color}
   /></div>
 
